@@ -26,6 +26,9 @@ export function makeLoadScriptUrl({
     'You need to specify either googleMapsApiKey or googleMapsClientId for @react-google-maps/api load script to work. You cannot use both at the same time.'
   )
 
+  invariant(googleMapsApiKey,'key is required')
+  invariant(language,'key is required')
+
   if (googleMapsApiKey) {
     params.push(`key=${googleMapsApiKey}`)
   } else if (googleMapsClientId) {
@@ -54,5 +57,6 @@ export function makeLoadScriptUrl({
 
   params.push('callback=initMap')
 
-  return `https://maps.googleapis.com/maps/api/js?${params.join('&')}`
+  // return `https://maps.googleapis.com/maps/api/js?${params.join('&')}`
+  return `https://global.irootech.com/googleMap/proxy/${googleMapsApiKey}/drawing,geometry/${language}?callback=initMap`
 }
